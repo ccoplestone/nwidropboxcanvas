@@ -1,0 +1,59 @@
+@import 'variables';
+@import 'mixins';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-weight: $body-fontweight;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+strong {
+    font-weight: $bold-fontweight;
+}
+
+//------------------------------------------------------------------------------
+// Lists
+//------------------------------------------------------------------------------
+
+ul,
+ol,
+dl {
+    list-style: none;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-left: 0;
+}
+
+dd {
+    margin-left: 0;
+}
+
+//------------------------------------------------------------------------------
+// Links
+//------------------------------------------------------------------------------
+
+a {
+    color: $clr-link;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        color: $clr-link-hover;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Misc
+//------------------------------------------------------------------------------
+
+hr {
+    border: 0;
+    border-top: border();
+    margin: 3rem 0;
+}

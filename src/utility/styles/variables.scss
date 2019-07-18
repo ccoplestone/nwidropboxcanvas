@@ -1,0 +1,112 @@
+//------------------------------------------------------------------------------
+// File Paths
+//------------------------------------------------------------------------------
+
+$image-url: '../images/';
+
+//------------------------------------------------------------------------------
+// Layout
+//------------------------------------------------------------------------------
+
+$container-width: 99rem;
+
+$gutter: 3.2258%;
+$column: 5.376%;
+
+$quarter: columnify(3);
+$third: columnify(4);
+$half: columnify(6);
+
+$border-radius: .3rem;
+
+//------------------------------------------------------------------------------
+// Animation
+//------------------------------------------------------------------------------
+
+$easing: cubic-bezier(1, 0, .5, 1);
+
+//------------------------------------------------------------------------------
+// Breakpoints
+//------------------------------------------------------------------------------
+
+$bp-mobile: 40rem;
+$bp-small-tablet: 55rem;
+$bp-tablet: 70rem;
+$bp-small-desktop: 85rem;
+$bp-desktop: $container-width;
+
+$breakpoints: (
+    mobile: (min: $bp-mobile, max: $bp-small-tablet),
+    small-tablet: (min: $bp-small-tablet, max: $bp-tablet),
+    tablet: (min: $bp-tablet, max: $bp-small-desktop),
+    small-desktop: (min: $bp-small-desktop, max: $bp-desktop),
+    desktop: (min: $bp-desktop)
+);
+
+//------------------------------------------------------------------------------
+// Typography
+//------------------------------------------------------------------------------
+
+$fontfamily: Lato, sans-serif;
+$body-fontweight: 400;
+$bold-fontweight: 700;
+
+$base-fontsize: 62.5;
+$body-fontsize: 1.4;
+
+$body-lineheight: 1.45;
+
+$fontsizes: (
+    mobile: (),
+    desktop: (
+        xsml: 11,
+        sml: 12,
+        med: 14,
+        lrg: 17,
+        xlrg: 20,
+        xxlrg: 22
+    )
+);
+
+//------------------------------------------------------------------------------
+// Colours
+//------------------------------------------------------------------------------
+
+$clr-white: #fff;
+$clr-black: #000;
+
+$clr-primary: #66b32d;
+$clr-primary-dark: #5aa039;
+
+$clr-secondary: #e96d00;
+$clr-secondary-dark: #c60;
+
+$clr-tertiary: #3498db;
+$clr-tertiary-dark: darken($clr-tertiary, 8);
+
+$clr-grey-xlight: #f1f4f6;
+$clr-grey-light: #f0f0f0;
+$clr-grey: #c1c1c1;
+$clr-grey-dark: #888;
+$clr-grey-xdark: #444;
+$clr-grey-xxdark: #232f3e;
+
+$clr-error: #ff4136;
+
+$clr-background: $clr-grey-xlight;
+
+$clr-text: $clr-grey-xdark;
+$clr-text-light: $clr-grey;
+
+$clr-link: $clr-tertiary;
+$clr-link-hover: $clr-tertiary-dark;
+
+// Colour Arrays
+
+$clrs-background: (
+
+);
+
+$clrs-text: (
+    'white': $clr-white // 'white' is written in quotes to prevent sass-lint error
+);

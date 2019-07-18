@@ -1,0 +1,28 @@
+@import 'variables';
+@import 'mixins';
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    // sass-lint:disable-block no-vendor-prefixes
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-size: ($base-fontsize * 1%);
+    height: 100%;
+}
+
+body {
+    background-color: $clr-background;
+    color: $clr-text;
+    font-family: $fontfamily;
+    font-size: ($body-fontsize * 1em);
+    font-weight: $body-fontweight;
+    height: 100%;
+    line-height: $body-lineheight;
+    margin: 0;
+}

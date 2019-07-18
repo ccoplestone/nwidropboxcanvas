@@ -1,0 +1,18 @@
+{
+    "env": {
+        "browser": true,
+        "jest": true
+    },
+    "extends": "airbnb",
+    "rules": {
+        "indent": ["error", 4],
+        "jsx-a11y/anchor-is-valid": [ "error", { "specialLink": ["to"] }],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "no-use-before-define": ["error", { "functions": false, "classes": true }]
+    },
+    "settings": {
+        "import/resolver": "webpack"
+    }
+}

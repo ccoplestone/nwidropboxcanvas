@@ -1,0 +1,146 @@
+//------------------------------------------------------------------------------
+// Typography
+//------------------------------------------------------------------------------
+
+@function remfontsize($size) {
+    $factor: (16 * $base-fontsize) / 100;
+    $rem: $size / $factor;
+    @return $rem * 1rem;
+}
+
+@function getfontsize($string, $device) {
+    $device-sizes: map-get($fontsizes, $device);
+    @return map-get($device-sizes, $string);
+}
+
+@mixin font-size($string, $device: desktop) {
+    $size: getfontsize($string, $device);
+    font-size: remfontsize($size);
+}
+
+@mixin hide-text {
+    overflow: hidden;
+    text-align: left;
+    text-indent: 100%;
+    white-space: nowrap;
+}
+
+//------------------------------------------------------------------------------
+// Layout
+//------------------------------------------------------------------------------
+
+@mixin pos($map, $type: absolute) {
+    position: #{$type};
+
+    @if (map-get($map, top)) {
+        top: map-get($map, top);
+    }
+    @if (map-get($map, right)) {
+        right: map-get($map, right);
+    }
+    @if (map-get($map, bottom)) {
+        bottom: map-get($map, bottom);
+    }
+    @if (map-get($map, left)) {
+        left: map-get($map, left);
+    }
+}
+
+@mixin posabs($map) {
+    @include pos($map);
+}
+
+@mixin posfix($map) {
+    @include pos($map, fixed);
+}
+
+// Stretch an element to the same dimensions as it's parent. Usually useful for
+// pseudo elements (ie for a background when traditional css methods are not
+// appropriate). Ensure the parent has a non-static `position` property set.
+
+@mixin stretch($top: 0, $right: 0, $bottom: 0, $left: 0) {
+    @include posabs((top: $top, right: $right, bottom: $bottom, left: $left));
+}
+
+// Visually hide an element, but still allow its content to be parsed (by
+// screen readers, for example)
+@mixin assistive {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: .1rem;
+    margin: -.1rem;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: .1rem;
+}
+
+// Get the percentage width of a column, based on the number of columns and
+// gutters it should span
+
+@function columnify($count) {
+    @return ($count * $column) + (($count - 1) * $gutter);
+}
+
+@function gutterify($count) {
+    @return ($count * $column) + (($count + 1) * $gutter);
+}
+
+// A downward facing arrow, with customisable size, thickness and colour
+
+@mixin arrow($size, $colour, $thickness) {
+    border: #{$colour} solid;
+    border-width: 0 #{$thickness} #{$thickness} 0;
+    height: $size;
+    width: $size;
+}
+
+@mixin downarrow($size, $colour, $thickness: .1rem) {
+    @include arrow($size, $colour, $thickness);
+    transform: rotate(45deg);
+}
+
+@mixin rightarrow($size, $colour, $thickness: .1rem) {
+    @include arrow($size, $colour, $thickness);
+    transform: rotate(-45deg);
+}
+
+// Shorthand for creating a border
+
+@function border($colour: $clr-grey-light, $thickness: .1rem, $style: solid) {
+    @return $thickness $colour $style;
+}
+
+// Ensure a consistent border radius throughout
+
+@mixin border-radius {
+    border-radius: $border-radius;
+}
+
+//------------------------------------------------------------------------------
+// Images
+//------------------------------------------------------------------------------
+
+@function image($url) {
+    @return url('#{$image-url}#{$url}');
+}
+
+//------------------------------------------------------------------------
+// Breakpoints
+//------------------------------------------------------------------------
+
+@mixin break($string) {
+    $key: str-slice($string, 2);
+    $break: map-get($breakpoints, $key);
+
+    @if str-index($string, '=') == 1 { // Equal to
+        @media (min-width: map-get($break, min)) and (max-width: (map-get($break, max) - .1rem)) { @content; }
+    } @else if str-index($string, '<') == 1 { // Less than (desktop first)
+        @media (max-width: (map-get($break, min) - .1rem)) { @content; }
+    } @else if str-index($string, '>') == 1 { // More than (mobile first)
+        @media (min-width: map-get($break, min)) { @content; }
+    } @else {
+        $break: map-get($breakpoints, $string); // Use $string instead of $key to get the breakpoint
+        @media (min-width: map-get($break, min)) { @content; }
+    }
+}
