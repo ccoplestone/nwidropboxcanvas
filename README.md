@@ -1,2 +1,1 @@
-# CaptureHub App
-## Proof of Concept
+# NWI Dropbox Signature Uploader
