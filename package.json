@@ -1,4 +1,9 @@
 {
+  "name": "nwi-canvasdropbox",
+  "displayName": "NWI Canvas Dropbox",
+  "version": "1.0.0",
+  "description": "Allows signatures to be drawn via HTML canvas and uploaded to Dropbox",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "axios": "^0.18.1",
@@ -44,8 +49,8 @@
     "webpack-dev-server": "^3.7.2"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack -p",
-    "clean": "rimraf ./public",
+    "build": "npm run clean && cross-env NODE_ENV=production webpack -p",
+    "clean": "rimraf ./www",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
     "start": "npm run dev",
     "test": "jest",

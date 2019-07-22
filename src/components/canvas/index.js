@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import React, { Fragment, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import config from 'ch/config/index';
@@ -9,11 +10,11 @@ import Button from 'ch/components/button';
 
 import styles from './styles.scss';
 
-const Canvas = () => {
+const Canvas = (props) => {
     const [imageURL, setImageURL] = useState('');
     const requestConfig = {
         headers: {
-            Authorization: 'Bearer _D29L3f1qlAAAAAAAAAACotDVyfAI-iLC4roe_40ipXwKDYR8-ai7gyoPUF4EKY5',
+            Authorization: `Bearer ${props.dropboxAPIKey || '_D29L3f1qlAAAAAAAAAACotDVyfAI-iLC4roe_40ipXwKDYR8-ai7gyoPUF4EKY5'}`,
             'Content-Type': 'application/octet-stream',
             'Dropbox-API-Arg': '{"path": "/signature.png","mode": "add","autorename": true,"mute": false}',
         },
@@ -94,6 +95,14 @@ const Canvas = () => {
             </div>
         </Fragment>
     );
+};
+
+Canvas.propTypes = {
+    dropboxAPIKey: PropTypes.string,
+};
+
+Canvas.defaultProps = {
+    dropboxAPIKey: '',
 };
 
 export default Canvas;
