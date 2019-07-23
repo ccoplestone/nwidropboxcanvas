@@ -12,9 +12,11 @@ import styles from './styles.scss';
 
 const Canvas = (props) => {
     const [imageURL, setImageURL] = useState('');
+    const [uploadSuccess, setUploadSuccess] = useState(false);
+    const [errorData, setErrorData] = useState('');
     const requestConfig = {
         headers: {
-            Authorization: `Bearer ${props.dropboxAPIKey || '_D29L3f1qlAAAAAAAAAACotDVyfAI-iLC4roe_40ipXwKDYR8-ai7gyoPUF4EKY5'}`,
+            Authorization: `Bearer ${props.dropboxAPIKey || ''}`,
             'Content-Type': 'application/octet-stream',
             'Dropbox-API-Arg': '{"path": "/signature.png","mode": "add","autorename": true,"mute": false}',
         },
@@ -67,6 +69,7 @@ const Canvas = (props) => {
         function clearCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             setImageURL('');
+            setUploadSuccess(false);
         }
 
         // Listeners
@@ -80,7 +83,11 @@ const Canvas = (props) => {
     });
 
     function blobImageUpload(data) {
-        axios.post(config.paths.api, data, requestConfig);
+        axios.post(config.paths.api, data, requestConfig)
+            .then(() => {
+                setUploadSuccess(true);
+            })
+            .catch(err => setErrorData(err.response.data.error_summary));
     }
 
     return (
@@ -91,7 +98,12 @@ const Canvas = (props) => {
                 <h3 className={styles.title}>Signature preview</h3>
                 {imageURL !== '' ? <img src={imageURL} alt="signature" /> : <p>No signature drawn.</p>}
                 {imageURL !== '' ? <a download="signature.png" href={imageURL}>Download</a> : null}
-                <Button buttonId="upload">Upload</Button>
+                <Button buttonId="upload">Save {uploadSuccess !== false ?
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" /></svg>
+                    </span> : null}
+                </Button>
+                {errorData !== '' ? <p>Invalid token son.</p> : null}
             </div>
         </Fragment>
     );

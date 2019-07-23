@@ -1,6 +1,6 @@
 @import 'variables';
 
-.root {
+.nwicanvas {
     background-color: transparent;
     border: 0;
     border-radius: .5rem;
@@ -8,7 +8,7 @@
     padding: 1rem;
 }
 
-.rootDisabled {
+.nwicanvasDisabled {
     opacity: .5;
     pointer-events: none;
 }

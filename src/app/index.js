@@ -1,15 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
 
-import HomeScene from 'ch/scenes/home';
+import Canvas from 'ch/components/canvas';
 
 import 'ch/utility/styles/layout.scss';
 import 'ch/utility/styles/elements.scss';
 
-const App = () => (
-    <BrowserRouter>
-        <Route exact path="/" render={() => <HomeScene />} />
-    </BrowserRouter>
-);
+const App = () => <Canvas dropboxAPIKey="_D29L3f1qlAAAAAAAAAACotDVyfAI-iLC4roe_40ipXwKDYR8-ai7gyoPUF4EKY5" />;
 
 export default App;
