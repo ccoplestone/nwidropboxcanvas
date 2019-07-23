@@ -16,7 +16,7 @@ const Canvas = (props) => {
     const [errorData, setErrorData] = useState('');
     const requestConfig = {
         headers: {
-            Authorization: `Bearer ${props.dropboxAPIKey || ''}`,
+            Authorization: `Bearer ${props.dropboxAPIKey || 'Please change this to your DropBox token'}`,
             'Content-Type': 'application/octet-stream',
             'Dropbox-API-Arg': '{"path": "/signature.png","mode": "add","autorename": true,"mute": false}',
         },
